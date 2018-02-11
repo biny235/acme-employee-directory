@@ -1,0 +1,25 @@
+{% extends './layout.html' %}
+
+{% block content %}
+    <div>
+        <form method='POST' action='/employees'>
+        <label>First Name</label>
+        <input name='firstName'/>
+        <label>Last Name</label>
+        <input name='lastName'/>
+        <label>Nicknames</label>
+        <input name='nicknames'/>
+        <button>Submit</button>
+        </form>
+    </div>
+    <div>
+       
+        <ul>
+            {% for employee in employees %}
+                <li><a href="/employees/{{employee.id}}">{{ employee.fullName }}</a></li>
+            {% endfor %}
+        </ul>
+
+    </div>
+
+{% endblock %}
