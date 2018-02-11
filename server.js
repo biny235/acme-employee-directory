@@ -7,8 +7,8 @@ nunjucks.configure({noCache: true});
 app.set('view engine', 'html');
 app.engine('html', nunjucks.render);
 app.use('/vendor', express.static(path.join(__dirname, 'node_modules')));
-// db.sync()
-//     .then(()=> db.seed())
+db.sync()
+    .then(()=> db.seed())
 
 app.use('/', require('./routes'));
 
