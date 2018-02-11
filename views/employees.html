@@ -1,22 +1,21 @@
 {% extends './layout.html' %}
 
 {% block content %}
-    <div>
+    
         <form method='POST' action='/employees'>
-        <label>First Name</label>
-        <input name='firstName'/>
-        <label>Last Name</label>
-        <input name='lastName'/>
-        <label>Nicknames</label>
-        <input name='nicknames'/>
-        <button>Submit</button>
+            <div class='container form-group form-inline' style="border: 1px;">                
+                <input name='firstName'class="form-control" value="First Name"/>                
+                <input name='lastName' class="form-control"  value="Last Name"/>
+                <input name='nicknames' class="form-control"  value="Nicknames"/>
+                <button class="btn btn-primary">Submit</button>
+            </div>
         </form>
-    </div>
+    
     <div>
        
         <ul>
             {% for employee in employees %}
-                <li><a href="/employees/{{employee.id}}">{{ employee.fullName }}</a></li>
+                <li><a href="/employees/{{employee.id}}">{{ employee.fullName }}</a> {{employee.nicknames.length}} nicknames {% for nickname in nicknames %} nickname {% endfor %}</li>
             {% endfor %}
         </ul>
 

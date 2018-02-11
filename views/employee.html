@@ -1,19 +1,30 @@
 {% extends './layout.html' %}
 
 {% block content %}
-    {{ nickCount }}
+    
     <form method='POST' action='/employees/{{employee.id}}?_method=put'>
-        <label>First Name</label>
-        <input name='firstName' value='{{employee.firstName}}'/>
-        <label>Last Name</label>
-        <input name='lastName' value='{{employee.lastName}}'/>
-        <label>Nicknames</label>
-        <input name='nicknames' value='{{employee.nicknames}}'/>
-        <button>Submit</button>
+        <div class='form-inline' style="border: 1px;">
+            <div class="form-group col-md-3">
+                <label>First Name </label>
+                <input name='firstName' value='{{employee.firstName}}' class="form-control"/>
+            </div>
+            <div class="form-group col-md-3">
+                <label>Last Name</label>
+                <input name='lastName' value='{{employee.lastName}}' class="form-control"/>
+            </div>
+            <div class="form-group col-md-3">
+                <label>Nicknames</label>
+                <input name='nicknames' value='{{employee.nicknames}}' class="form-control"/>
+            </div>
+             
+            
+        </div>
+        <button class="btn btn-success btn-lg btn-block">Update</button>
+        
     
     </form>
     <form method='POST' action='/employees/{{employee.id}}?_method=delete'>
-        <button>Delete</button>
+        <button class="btn btn-danger btn-lg btn-block">Delete</button>
 
     </form>
 

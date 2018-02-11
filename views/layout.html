@@ -1,18 +1,24 @@
 <html>
     <head>
         <title>{{title}}</title>
+        <link rel='stylesheet' href='/vendor/bootstrap/dist/css/bootstrap.css'/>
     </head>
     <body>
-        <div id="nav">
-            <ul>
-                <li><a href='/'>Home</a></li>
-                <li><a href='/employees'>Employees</a></li>
+    <div class="container">
+        <h1>Acme Employee Directory</h1>
+        <h2>{{title}}</h2>
+        <div>We are a growing company, we currently have <span class="badge badge-success">{{employeeCount}}</span> employees and <span class="badge badge-success">{{nickCount}}</span> nicknames!</div>
+        <div>
+            <ul class="nav nav-pills">
+                <li class='nav-item'><a href='/' class='nav-link {% if path === '/'%}active{% endif %}'>Home</a></li>
+                <li><a href='/employees' class="nav-link {% if path === '/employees' %} active {% endif %}">Employees</a></li>
             </ul>
         </div>
 
         
         {% block content %}
         {% endblock %}
+     </div>
 
     </body>
 

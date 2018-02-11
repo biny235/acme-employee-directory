@@ -2,18 +2,36 @@ const router = require('express').Router();
 const db = require('../db')
 const { Employee } = db.models;
 const bodyParser = require('body-parser');
+const path = require('path')
 router.use(bodyParser.urlencoded())
 router.use(require('method-override')('_method'))
 
+router.use((req, res, next)=>{
+    res.locals.path = req.url;
+    let nickCount, employeeCount;
+
+    Employee.findAll()
+        .then(employees =>{
+            employeeCount = employees.length;
+            nickCount = employees.reduce((memo, employee)=>{
+                return memo += employee.nicknames.length;
+            }, 0)
+            res.locals.employeeCount = employeeCount;
+            res.locals.nickCount = nickCount;
+            next()
+            
+        })
+        .catch(next)
+});
+
 router.get('/', (req, res, next)=>{
-    let employeeCount, nicknameCount;
-    res.render('index', {title: 'home', nickame: nicknameCount})
+    res.render('index', {title: 'Home'})
 });
 
 router.get('/employees', (req,res,next)=>{
     Employee.findAll()
         .then((employees)=>{
-            res.render('employees', {title:'employees', employees })
+            res.render('employees', {title:'Employees', employees })
         })
         .catch(next)
 });

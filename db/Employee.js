@@ -14,8 +14,9 @@ const Employee = conn.define("employee", {
     },
     setterMethods:{
         nicknames: function(value){
-            
-            if(!Array.isArray(value)){
+            if(!value){
+                this.setDataValue('nicknames', [])
+            }else if(!Array.isArray(value)){
                 console.log(value)
                 const nicks = value.split(',');
                 this.setDataValue('nicknames', nicks)

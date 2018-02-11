@@ -12,6 +12,8 @@ const seed = ()=>{
 const sync = ()=>{
     return conn.sync({ force: true })
 };
+
+
 module.exports = {
     seed,
     sync,
