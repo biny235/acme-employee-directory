@@ -2,7 +2,6 @@ const router = require('express').Router();
 const db = require('../db')
 const { Employee } = db.models;
 const bodyParser = require('body-parser');
-const path = require('path')
 router.use(bodyParser.urlencoded())
 router.use(require('method-override')('_method'))
 
@@ -18,8 +17,7 @@ router.use((req, res, next)=>{
             }, 0)
             res.locals.employeeCount = employeeCount;
             res.locals.nickCount = nickCount;
-            next()
-            
+            next()  
         })
         .catch(next)
 });
